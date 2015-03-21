@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Cieslix_Cache>
+            <version>1.0.0</version>
+        </Cieslix_Cache>
+    </modules>
+    <global>
+        <models>
+            <cieslix_cache>
+                <class>Cieslix_Cache_Model</class>
+            </cieslix_cache>
+        </models>
+    </global>
+    <frontend>
+        <events>
+            <controller_front_send_response_after>
+                <observers>
+                    <cieslix_cache>
+                        <type>singleton</type>
+                        <class>cieslix_cache/observer</class>
+                        <method>controllerFrontSendResponseAfter</method>
+                    </cieslix_cache>
+                </observers>
+            </controller_front_send_response_after>
+        </events>
+    </frontend>
+</config>

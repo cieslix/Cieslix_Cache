@@ -1,0 +1,3 @@
+app/etc/local.cache.xml         app/etc/
+app/code/local/Cieslix/Cache    app/code/local/Cieslix/Cache
+app/etc/modules/*               app/etc/modules/

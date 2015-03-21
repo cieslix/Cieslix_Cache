@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Cieslix_Cache>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>Mage_Core</depends>
+        </Cieslix_Cache>
+    </modules>
+</config>
