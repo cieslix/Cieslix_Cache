@@ -13,7 +13,7 @@ class Cieslix_Cache_Model_Observer
     {
         /** @var Mage_Core_Controller_Request_Http $request */
         $request = Mage::app()->getRequest();
-        if ($this->_validate($request)) {
+        if ($request->isGet()) {
             $uri = $request->getRequestUri();
             $cache = (string)Mage::app()->loadCache(md5($uri));
             $content .= $cache;
