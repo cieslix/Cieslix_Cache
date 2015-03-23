@@ -2,7 +2,7 @@
     <global>
         <cache>
             <request_processors>
-                <class>Cieslix_Cache_Model_Observer</class>
+                <class>Cieslix_Cache_Model_RequestProcessor_PageCache</class>
             </request_processors>
         </cache>
     </global>

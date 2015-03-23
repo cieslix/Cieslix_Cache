@@ -1,26 +1,10 @@
 <?php
 
+/**
+ * Class Cieslix_Cache_Model_Observer
+ */
 class Cieslix_Cache_Model_Observer
 {
-    /**
-     * if page is cached it will be returned, no further request will be processed
-     * this is specified via app/etc/local.cache.xml
-     *
-     * @param string $content
-     * @return string
-     */
-    public function extractContent($content)
-    {
-        /** @var Mage_Core_Controller_Request_Http $request */
-        $request = Mage::app()->getRequest();
-        if ($request->isGet()) {
-            $uri = $request->getRequestUri();
-            $cache = (string)Mage::app()->loadCache(md5($uri));
-            $content .= $cache;
-        }
-        return $content;
-    }
-
     /**
      * save html after page is generated only if request is GET and requested page is in modules Mage_Cms and Mage_Catalog
      *
@@ -33,7 +17,7 @@ class Cieslix_Cache_Model_Observer
         /** @var Mage_Core_Controller_Request_Http $request */
         $request = $front->getRequest();
 
-        if ($this->_validate($request)) {
+        if ($this->_validateRequest($request)) {
             $uri = $request->getOriginalRequest()->getRequestUri();
             $responseHtml = $front->getResponse()->getBody();
             Mage::app()->saveCache($responseHtml, md5($uri), array(Mage_Core_Model_App::CACHE_TAG));
@@ -44,7 +28,7 @@ class Cieslix_Cache_Model_Observer
      * @param Mage_Core_Controller_Request_Http $request
      * @return boolean
      */
-    protected function _validate(Mage_Core_Controller_Request_Http $request)
+    protected function _validateRequest(Mage_Core_Controller_Request_Http $request)
     {
         $moduleName = $request->getControllerModule();
         return $request->isGet() && ($moduleName === 'Mage_Cms' || $moduleName === 'Mage_Catalog');
